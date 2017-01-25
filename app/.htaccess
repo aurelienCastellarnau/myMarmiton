@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^Routing/index.php?=$1$ /$1 [QSA,L]

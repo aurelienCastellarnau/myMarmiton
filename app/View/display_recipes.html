@@ -1,0 +1,10 @@
+<div ng-controller="displayRecipesController as drsCtrl" ng-show="displayRecipes" class="recipe_panel">
+        <div ng-repeat="(key, recipe) in recipes track by $index" ng-show="active == key">
+        <d-display-recipe></d-display-recipe>
+        </div>
+        <button ng-click="drsCtrl.prev()"><span  class="glyphicon glyphicon-chevron-left"></span></button>
+        <button ng-click="drsCtrl.next()"><span  class="glyphicon glyphicon-chevron-right"></span></button>
+    </div>
+<!--
+
+-->

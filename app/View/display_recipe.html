@@ -1,0 +1,45 @@
+<div ng-controller="displayRecipeController as drCtrl" ng-show="newRecipe || selectedRecipe">
+    <span class="glyphicon glyphicon-envelope">{{recipe.id}}</span>
+    <h1>{{recipe.name}}</h1>
+    <row>
+        <div class="col-sm-5">
+            <div class="jumbotron">
+                <p>{{recipe.kind}}</p>
+                <p> Difficulté {{recipe.difficulty}}/5</p>
+                <p>Note: {{recipe.stars}}</p>
+                <p>Préparation : {{recipe.prepTime}} Min</p>
+                <p>Cuisson : {{recipe.cookTime}} Min</p>
+            </div>
+        </div>
+    </row>
+    <div class="ingredientPanel">
+        <div class="row">
+            <div class="col-sm-4">
+                <legend>viande/ poisson</legend>
+            </div>
+            <div class="col-sm-4">
+                <legend>légume / accompagnement</legend>
+            </div>
+            <div class="col-sm-4">
+                <legend>condiment / épice</legend>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-repeat="(key, ingredient) in recipe.ingredients">
+                <div class="col-sm-4">
+                    <p ng-if="ingredient.kind === 'viande' || ingredient.kind === 'poisson'">{{ingredient.name}} / {{ingredient.quantity}}  {{ingredient.unit}}
+                    </p>
+                </div>
+                <div class="col-sm-4">
+                    <p ng-if="ingredient.kind === 'légume' || ingredient.kind === 'accompagnement'"> {{ingredient.name}} / {{ingredient.quantity}} {{ingredient.unit}}  
+                    </p>
+                </div>
+                <div class="col-sm-4">
+                    <p ng-if="ingredient.kind === 'condiment' || ingredient.kind === 'épice'">{{ingredient.name}} / {{ingredient.quantity}} {{ingredient.unit}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--ng-show="displayRecipe"-->

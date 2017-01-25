@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Marmiton">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Layout for Marmiton">
+        <meta name="author" content="Castellarnau Aurélien">
+        <link rel="icon" href="../link/favicon.ico">
+        <title>Marmiton</title>
+        <link href="public/ressources/css/bootstrap.css" rel="stylesheet">
+        <link href="public/ressources/css/bootstrap-theme.css" rel="stylesheet">
+        <link href="public/ressources/css/marmiton.css" rel="stylesheet">
+        <!--   <script src="public/ressources/js/jquery.js"></script>
+<script type="text/javascript" src="link/js/angular-sanitize.min.js"></script>-->
+        <script src="public/ressources/js/angular.js"></script>
+        <script src="App/Controller/navbar.js"></script>
+        <script src="App/Controller/recipe.js"></script>
+        <script src="App/Controller/recipeFactory.js"></script>
+        <script src="App/app.js"></script>
+    </head>
+    <body>
+        <div  ng-controller="marmitonController as mCtrl" class="container-fluid" style="padding-top: 4em;">
+            <d-navbar></d-navbar>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 recipePanel">
+                    <d-display-recipes></d-display-recipes>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <d-create-recipe></d-create-recipe>
+                </div>
+                <div class="col-sm-6 col-sm-offset-1">
+                    <d-display-recipe></d-display-recipe>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

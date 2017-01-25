@@ -1,0 +1,109 @@
+<div ng-controller="CrudRecipeController as crCtrl" ng-show="newRecipe">
+    <legend>Créez et partagez votre recette...</legend>
+    <div ng-show="err" class="alert alert-danger">
+        <p>{{err}}</p>
+    </div>
+    <table class="table ">
+        <caption>Double cliquez sur un champ pour l'éditer 
+        <br> cliquez sur 'partager' pour sauvegarder votre recette.
+        <br> le type d'un ingrédient doit correspondre à une des catégories.
+        </caption>
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <h2>
+                        <fieldset class="form-group">
+                            <input class="discretInput name" ng-model='recipe.name' name="name" type="text">
+                        </fieldset>
+                    </h2>
+                    <p> Note: {{recipe.note ||"à venir.."}}</p>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <fieldset class="form-group">
+                        <input class="discretInput" ng-model="recipe.kind" name="kind" type="text">
+                    </fieldset>
+                </th>
+                <th colspan="2">
+                    <fieldset class="form-group">
+                        <label class="numberLabel" for="difficulty">   Difficulté: </label>
+                        <input class="discretInput numberdiff" ng-model="recipe.difficulty" name="difficulty" type="number" min="0" max="5">
+                        <label class="numberLabel right">/5</label>
+                    </fieldset>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <fieldset class="form-group">
+                        <label class="numberLabel" for="difficulty">
+                            Temps de préparation :    
+                        </label>
+                        <input class="discretInput number" ng-model="recipe.prepTime" name="prepTime" type="number" min="0" max="400">
+                        <label class="numberLabel right">
+                            min
+                        </label> 
+                    </fieldset>
+                </th>
+                <th colspan="2">
+                    <fieldset class="form-group">
+                        <label class="numberLabel" for="cookTime">Temps de cuisson:</label> 
+                        <input class="discretInput number" ng-model="recipe.cookTime" name="cookTime" type="number" min="0" max="400">
+                        <label class="numberLabel right">
+                            min
+                        </label>
+                    </fieldset>
+                </th>
+            </tr>
+            <tr>
+                <td colspan="2"><h4 ng-click="newIngredient = !newIngredient">Ingrédients: </h4><button class="btn btn-sm btn-warning" ng-click="crCtrl.addIngredient()"><span  class="glyphicon glyphicon-plus"></span> Ajouter un ingrédient</button>
+                </td>
+                <td colspan="2"><h4 ng-click="newStep = !newStep">Etapes: </h4><button class="btn btn-sm btn-primary" ng-click="crCtrl.addStep()"><span  class="glyphicon glyphicon-plus"></span> Ajouter une Etape</button>
+                </td>
+            </tr>
+        </thead>
+        <tbody ng-show="newIngredient" ng-repeat="(key, value) in recipe.ingredients track by $index">
+            <tr>
+                <td>
+                    <input ng-model="recipe.ingredients[key].name" type="text" name="name" class="discretInput">
+                </td>
+                <td>
+                    <input ng-model="recipe.ingredients[key].kind" type="text" name="kind" class="discretInput">
+                </td>
+                <td>
+                    <input ng-model="recipe.ingredients[key].quantity" type="number" name="quantity" class="discretInput numberdiff" min="0" max="999">
+                </td>
+                <td>
+                    <input ng-model="recipe.ingredients[key].unit" type="text" name="unit" class="discretInput">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"><p ng-click="editIngr[$index] = (editIngr[$index] === 'comment') ? null : 'comment'">{{recipe.ingredients[key].comment ||"Ajouter un commentaire sur cet ingrédient :"}}</p><input ng-show="editIngr[$index] === 'comment'" ng-model="recipe.ingredients[key].comment" type="textarea" name="comment" class="form-control"></td>
+            </tr>
+        </tbody>
+        <tbody ng-show="newStep" ng-repeat="(key, value) in recipe.steps track by $index">
+            <tr>
+                <td>
+                   <label class="numberLabel">Etape N°</label>
+                    <input ng-model="recipe.steps[key].number" type="number" name="number" class="discretInput numberdiff">
+                </td>
+                <td colspan="3">
+                    <textarea rows="4" cols="150" ng-model="recipe.steps[key].content" name="content" class="form-control"></textarea>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <button ng-if="recipe.id" ng-click="crCtrl.update_recipe()" class="btn btn-info">éditer</button>
+                    <button ng-if="!recipe.id" ng-click="crCtrl.create_recipe()" class="btn btn-success">partager</button>
+                </td>
+                <td ng-if="recipe.id">
+                    <button ng-click="crCtrl.delete_recipe()" class="btn btn-danger">éditer</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+</div>
+</div>

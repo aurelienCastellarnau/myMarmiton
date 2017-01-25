@@ -1,0 +1,6 @@
+{
+    "name": "marmiton/etna2019castel_a",
+    "require": {
+        "elasticsearch/elasticsearch": "~5.0"
+    }
+}
